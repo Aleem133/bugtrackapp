@@ -1,6 +1,7 @@
-class ProjectsController < ApplicationController
+class BugsController < ApplicationController
+
     def index
-        @projects = Project.all
+        @bugs = Bug.all
     end
 
     def new
@@ -22,4 +23,5 @@ class ProjectsController < ApplicationController
     def destroy
 
     end
+    
 end

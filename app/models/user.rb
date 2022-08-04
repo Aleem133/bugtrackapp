@@ -13,8 +13,8 @@ class User < ApplicationRecord
   has_many :projects, through: :user_projects
   has_many :created_projects, class_name: "Project", foreign_key: :creator_id
 
-  has_many :created_bugs, class_name: "Bug", foreign_key: :qa_id
-  has_many :solved_bugs, class_name: "Bug", foreign_key: :developer_id
+  has_many :created_bugs, class_name: "Bug", foreign_key: "creator_id"
+  has_many :solved_bugs, class_name: "Bug", foreign_key: "solver_id"
 
   
   enum usertype: {
