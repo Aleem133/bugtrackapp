@@ -1,0 +1,189 @@
+$navbar-default-bg: #000000;
+
+@import "bootstrap";
+
+.center {
+  text-align: center;
+}
+
+.button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: rgb(226, 239, 82);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.jumbotron {
+  background-image: asset-url('cover_image.jpg');
+  background-size: cover;
+  height: 400px;
+}
+
+ul li{
+  padding-left: 15px;
+  list-style-type: none;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: rgb(227, 0, 0);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+  
+#logo:hover {
+  color: rgb(151, 0, 0);
+  text-decoration: none;
+}  
+
+.jumbotron h1 {
+  color: rgb(235, 0, 0);
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.jumbotron h2 {
+  color: rgb(231, 90, 90);
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.btn-xlarge {
+  background-color: #e28437;
+}
+
+.btn-xlarge:hover {
+  color: rgb(120, 10, 10);
+  text-decoration: none;
+}
+
+body {
+  height: 100%;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #760000;
+  color: #777;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+.description {
+  margin-top: 0;
+}
+
+.well a {
+  color: #ee7e3d;
+}
+
+.chef_info {
+  margin-top: 10px;
+}
+
+.colormatch a {
+  color: #ee7e3d;
+}
+
+.recipe-actions {
+  padding-top: 5px;
+  a {
+    color: #fff;
+  }
+}
+
+.listing {
+  list-style: none;
+  padding-left: 0;
+}
+
+.chef-title {
+  color: #ee7e3d;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+.input_checkbox input {
+  width: auto !important;
+}
+
+.center-block {
+  float: none;
+}
+
+.chat-container {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 150px;
+  width: 80;
+}
+
+.message-container {
+  .form-control {
+    float: left;
+    width: 80%;
+  }
+  .btn {
+    float: right;
+    position: relative;
+    height: 54px !important;
+    width: 18%;
+  }
+}
+
+.message {
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+.messages {
+  border: 1px solid #eaeaea;
+  height: 16em;
+  position: relative;
+  overflow: auto;
+}
+
+.liking {
+  padding-right: 10px;
+}
+
+.small-image {
+  max-width: 25px;
+  height: auto;
+}

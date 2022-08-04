@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <%= link_to "BugTracking", root_path, class: "navbar-brand", id: "logo" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div >
+    <ul class="nav navbar-nav">
+      <li>
+        <%= link_to " All Projects", '#', class:'button' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to " All Bugs  ", '#', class:'button' %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to " All Developers  ", '#', class:'button' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to " All QA  ", '#', class:'button' %>
+      </li>
+      
+      
+      </li>
+      <% if user_signed_in?%>
+      <li class="nav-item">
+        <%= button_to " Sign Out  ", destroy_user_session_path, method: :delete , class:'button' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to " Edit Profile", edit_user_registration_path, class:'button' %>
+      </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to " Sign Up  ", new_user_registration_path, class:'button' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to " Sign In  ", new_user_session_path, class:'button' %>
+        </li>
+      <% end %>
+      
+      
+    </ul>
+    
+  </div>
+</nav>
