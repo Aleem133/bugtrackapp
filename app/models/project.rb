@@ -6,7 +6,9 @@ class Project < ApplicationRecord
     
     has_many :user_projects
     has_many :users, through: :user_projects
-    #belongs_to :manager, class_name: "user", foreign_key: "creator_id"
+    belongs_to :creator, class_name: "User", foreign_key: "creator_id"
+
+    has_many :bugs, class_name: "bug", foreign_key: "project_id"
     
 
 end

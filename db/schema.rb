@@ -10,15 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_03_163847) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_04_131341) do
   create_table "bugs", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.date "deadline"
-    t.boolean "bug_type"
+    t.integer "bug_type", default: 1
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "creator_id"
+    t.integer "solver_id"
+    t.integer "project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -43,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_163847) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username"
-    t.string "usertype"
+    t.integer "usertype", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
