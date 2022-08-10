@@ -1,0 +1,20 @@
+<%= render 'shared/page_title', title: @bug.title.capitalize %>
+<div class='well col-md-12 col-md-offset-2'>
+    <h4 class='center '><strong>Description</strong></h4>
+    <%= simple_format(@bug.description.capitalize)%>
+    <div class="pull-right">
+        <p>
+            <h4>Project title: <%= @bug.project.title.capitalize %></h4><br>
+            Created By: <%= @bug.creator.username.capitalize %>&nbsp;&nbsp;<%= [@bug.creator.usertype] %><br>
+            Developer Assigned: <%= @bug.solver.username.capitalize %> &nbsp;&nbsp;<%= [@bug.solver.usertype] %>
+            <div class="pull-right"><small>Created: <%= time_ago_in_words(@bug.created_at) %> ago</small></div>
+        </p>
+    </div>
+    <div class = "bug-actions well">        
+        <ul class = "well">
+        <li><%= link_to "Return to bugs Listing", bugs_path, class: "button" %></li>
+        <li><%= link_to "Edit this bug", edit_bug_path(@bug), class: "button" %></li>
+        <li><%= button_to "Delete this bug", bug_path(@bug), method: :delete, class: "btn" %></li>
+        </ul>
+    </div>
+</div>

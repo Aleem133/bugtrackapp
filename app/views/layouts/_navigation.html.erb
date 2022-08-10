@@ -6,24 +6,25 @@
 
   <div >
     <ul class="nav navbar-nav">
-      <li>
-        <%= link_to " All Projects", projects_path, class:'button' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to " All Bugs  ", bugs_path, class:'button' %>
-      </li>
-      <li class="nav-item active">
-        <%= link_to " All Developers  ", '#', class:'button' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to " All QA  ", '#', class:'button' %>
-      </li>
+      
       
       
       </li>
       <% if user_signed_in?%>
+      <li>
+        <%= link_to "All Projects", projects_path, class:'button' %>
+      </li>
       <li class="nav-item">
-        <%= button_to " Sign Out  ", destroy_user_session_path, method: :delete , class:'button' %>
+        <%= link_to "All Bugs", bugs_path, class:'button' %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to "Create Project", new_project_path, class:'button' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Create Bug", new_bug_path, class:'button' %>
+      </li>
+      <li class="nav-item">
+        <%= button_to " Sign Out  ", destroy_user_session_path, method: :delete, data: {turbo_confirm: "You will be signed out...!"}, class:'button' %>
       </li>
       <li class="nav-item">
         <%= link_to " Edit Profile", edit_user_registration_path, class:'button' %>

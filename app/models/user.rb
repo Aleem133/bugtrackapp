@@ -6,8 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :email, presence: true
-  validates :username, presence: true
-  validates :usertype, presence: true
+  
   
   has_many :user_projects
   has_many :projects, through: :user_projects

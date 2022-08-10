@@ -1,0 +1,19 @@
+<%= render 'shared/page_title', title: @project.title.capitalize %>
+<div class='well col-md-12 col-md-offset-2'>
+    <h4 class='center '><strong>Description</strong></h4>
+    <%= simple_format(@project.description.capitalize)%>
+    <div class="pull-right">
+        <p>
+            <div class="pull-right">
+            <small>Created By: <em><%= @project.creator.username.capitalize %> [Manager]</em> </small>
+            <small><%= time_ago_in_words(@project.created_at) %> ago</small></div>
+        </p>
+    </div>
+    <div class = "project-actions">        
+        <ul>
+        <%= link_to "Return to projects Listing", projects_path, class: "button" %><br>
+        <%= link_to "Edit this Project", edit_project_path(@project), class: "button" %>
+        <%= button_to "Delete this Project", project_path(@project), method: :delete, data: {confirm:"Are you sure you want to delete this project.?"}, class: "btn" %>
+        </ul>
+    </div>
+</div>

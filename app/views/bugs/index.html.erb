@@ -1,23 +1,21 @@
 <%= render 'shared/page_title', title: "Showing All Bugs" %>
 
-
-<% @bugs.each do |bug| %>
-    <div class="row">
-        <div class="col-md-8 well">
-            <h4>Title: <%= bug.title %></h4>
-            <h5>Description: <%= bug.description %></h5>
-            <p>
-                Deadline: <%= bug.deadline %><br>
-                Type: <%= bug.bug_type %><br>
-                Status: <%= bug.status %><br>
-                Created by: <%= bug.creator.username %><br>
-                Developer Assigned: <%= bug.solver.username %><br>
-            </p>
-            <small>Created <%= time_ago_in_words(bug.created_at) %> ago</small><br>
-            <small>Updated <%= time_ago_in_words(bug.updated_at) %> ago</small><hr />
+<div align="center">
+    <% @bugs.each do |bug| %>
+        <div class="row">
+            <div class="col-md-12 well">
+                <h4><%= link_to bug.title, bug_path(bug) %></h4>
+                <h5>Description: <%= bug.description %></h5>
+                <p>
+                    Deadline: <%= bug.deadline %><br>
+                    Type: <%= bug.bug_type %><br>
+                    Status: <%= bug.status %><br>
+                    Created by: <%= bug.creator.username %><br>
+                    Developer Assigned: <%= bug.solver.username %><br>
+                </p>
+                <small>Created <%= time_ago_in_words(bug.created_at) %> ago</small><br>
+                <small>Updated <%= time_ago_in_words(bug.updated_at) %> ago</small><hr />
+            </div>
         </div>
-    </div>
-    
-    
-
-<% end %>
+    <% end %>
+</div>

@@ -6,6 +6,18 @@ $navbar-default-bg: #000000;
   text-align: center;
 }
 
+.btn {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #848400;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .button {
   background: none!important;
   border: none;
@@ -13,7 +25,7 @@ $navbar-default-bg: #000000;
   /*optional*/
   font-family: arial, sans-serif;
   /*input has OS specific font-family*/
-  color: rgb(226, 239, 82);
+  color: #E2EF52;
   text-decoration: none;
   cursor: pointer;
 }
@@ -60,7 +72,7 @@ ul li{
 }
 
 .btn-xlarge {
-  background-color: #e28437;
+  background-color: #fafa00;
 }
 
 .btn-xlarge:hover {
@@ -108,8 +120,12 @@ footer ul li {
   margin-top: 0;
 }
 
-.well a {
-  color: #ee7e3d;
+.well{
+  background: #e6e6e6;
+  align-items: center;
+  a {
+  color: #848400;
+  }
 }
 
 .chef_info {
@@ -117,7 +133,7 @@ footer ul li {
 }
 
 .colormatch a {
-  color: #ee7e3d;
+  color: #848400;
 }
 
 .recipe-actions {
@@ -133,7 +149,7 @@ footer ul li {
 }
 
 .chef-title {
-  color: #ee7e3d;
+  color: #848400;
   font-weight: bold;
   font-size: 1.25em;
 }
@@ -144,14 +160,6 @@ footer ul li {
 
 .center-block {
   float: none;
-}
-
-.chat-container {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 150px;
-  width: 80;
 }
 
 .message-container {

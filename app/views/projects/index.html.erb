@@ -1,14 +1,16 @@
 <%= render 'shared/page_title', title: "Showing All Projects" %>
 
-
-<% @projects.each do |project| %>
-    <div class="row">
-        <div class="col-md-8 well">
-            <h4><%= project.title %></h4>
-            <h4><%= project.description %></h4>
-            <small>Created <%= time_ago_in_words(project.created_at) %> ago</small><br>
-            <small>Updated <%= time_ago_in_words(project.updated_at) %> ago</small><hr />
+<div align="center">
+    <% @projects.each do |project| %>
+        <div class="row">
+            <div class="col-md-12 well">
+                <h4><%= link_to project.title.capitalize, project_path(project) %></h4>
+                <h4><%= project.description %></h4>
+                <small>Created By: <em><%= project.creator.username.capitalize %> <%= [ project.creator.usertype ] %></em> </small><br>
+                <small>Created <%= time_ago_in_words(project.created_at) %> ago</small><br>
+                <small>Updated <%= time_ago_in_words(project.updated_at) %> ago</small><hr />
+            </div>
         </div>
-    </div>
 
-<% end %>
+    <% end %>
+</div>
