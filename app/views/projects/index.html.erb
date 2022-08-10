@@ -1,5 +1,9 @@
 <%= render 'shared/page_title', title: "Showing All Projects" %>
 
+<% if user_signed_in? %>
+  <div>Signed in as... <%= current_user.email %></div>
+<% end %>
+
 <div align="center">
     <% @projects.each do |project| %>
         <div class="row">
@@ -11,6 +15,6 @@
                 <small>Updated <%= time_ago_in_words(project.updated_at) %> ago</small><hr />
             </div>
         </div>
-
     <% end %>
+    <%= will_paginate %>
 </div>

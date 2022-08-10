@@ -50,6 +50,8 @@ gem "sassc-rails"
 gem "cancancan"
 gem 'carrierwave', '~> 2.0'
 gem 'pry', '~> 0.13.1'
+gem "will_paginate","3.3"
+gem "bootstrap-will_paginate", "0.0.10"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
