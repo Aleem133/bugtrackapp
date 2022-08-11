@@ -1,4 +1,4 @@
-<div class="row well" align="center">
+<div class="well" align="center">
   <div class="col-md-12">
     <%= form_for(@bug, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="form-group">
@@ -27,6 +27,24 @@
       </div><br>
 
       <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :screenshot %>
+        </div>
+        <div class="col-md-8">
+          <%= f.file_field :image %>
+        </div>
+      </div><br>
+
+      <div class="form-group">
+        <div class="col-md-8" align="left">
+          <%= f.label :Developer %>&nbsp;&nbsp;&nbsp;
+          <%= f.select(:solver_id, @devs.collect {|p| [ p.username, p.id ] }, { :prompt => ""}) %>          
+        </div>
+      </div><br>
+
+      <%= f.hidden_field :project_id, value: params['project_id'] %>
+
+      <div class="form-group">
         <div class="row">
           <div class="col-md-6">
 
@@ -38,14 +56,17 @@
           </div>
         </div>
       </div><br>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-6">
-          <%= f.label :Status %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <%= f.select :status, ["New", "Started", "Completed",'Resolved'] , selected: 'New'%>
+
+      <% if current_user.usertype == 'QA' || current_user.usertype == 'Developer'%>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+            <%= f.label :Status %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= f.select :status, ["New", "Started", "Completed",'Resolved'] , selected: 'New'%>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
       
 
       <div class="form-group">

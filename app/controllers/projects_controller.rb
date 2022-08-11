@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     def create
         if current_user.usertype == 'Manager'
             @project = Project.new(project_params)
-            @project.creator_id = 1
+            @project.creator_id = current_user.id
             if @project.save
                 flash[:success] = "Project created successfully"
                 redirect_to project_path(@project)
@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
     end
 
     def update
-        if current_user.usertype == 'Manager'
+        if current_user.usertype == 'Manager' && current_user.id == @project.creator_id
             if @project.update(project_params)
                 flash[:success]= "Project updated Succesfully"
                 redirect_to project_path(@project)
@@ -55,7 +55,7 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
-        if current_user.usertype == 'Manager'
+        if current_user.usertype == 'Manager' && current_user.id == @project.creator_id
             @project = Project.find(params[:id]).destroy
             flash[:success]= "Project deleted Succesfully"
             redirect_to projects_path

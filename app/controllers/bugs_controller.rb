@@ -19,24 +19,30 @@ class BugsController < ApplicationController
 
     def new
         @bug = Bug.new
+        @devs = Project.find(params['project_id']).users.Developer
     end
 
     def create
-        @bug = Bug.new(bug_params)
-        @bug.creator_id = 3
-        @bug.solver_id = 2
-        @bug.project_id = 1
-        if @bug.save
-            flash[:success] = "Bug created successfully"
-            redirect_to bug_path(@bug)
+        #binding.pry
+        #@devs = Project.find(params['project_id']).users.Developer
+        if current_user.usertype == 'QA'
+            @bug = Bug.new(bug_params)
+            @bug.creator_id = current_user.id
+            #@bug.solver_id = 2
+            #@bug.project_id = project_id
+            if @bug.save
+                flash[:success] = "Bug created successfully"
+                redirect_to bug_path(@bug)
+            else
+                render 'new'
+            end
         else
-            render 'new'
+            redirect_to root_path
         end
-
     end
 
     def edit
-
+        @devs = Project.find(params['project_id']).users.Developer
     end
 
     def show
@@ -51,11 +57,15 @@ class BugsController < ApplicationController
 
 
     def update
-        if @bug.update(bug_params)
-            flash[:success]= "Project updated Succesfully"
-            redirect_to bug_path(@bug)
+        if current_user.usertype == 'QA' || current_user.usertype == 'Developer'
+            if @bug.update(bug_params)
+                flash[:success]= "Project updated Succesfully"
+                redirect_to bug_path(@bug)
+            else
+                render 'edit'
+            end
         else
-            render 'edit'
+            redirect_to root_path
         end
     end
 
@@ -72,7 +82,7 @@ class BugsController < ApplicationController
     end
 
     def bug_params
-        params.require(:bug).permit(:title, :description,:deadline,:bug_type,:status)
+        params.require(:bug).permit(:title, :description, :deadline, :bug_type, :status, :solver_id, :project_id, :image)
     end
     
 end

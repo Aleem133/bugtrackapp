@@ -4,17 +4,25 @@
     <%= simple_format(@bug.description.capitalize)%>
     <div class="pull-right">
         <p>
-            <h4>Project title: <%= @bug.project.title.capitalize %></h4><br>
+            <h4>Project title: <%= @bug.project.title.capitalize %></h4>
             Created By: <%= @bug.creator.username.capitalize %>&nbsp;&nbsp;<%= [@bug.creator.usertype] %><br>
-            Developer Assigned: <%= @bug.solver.username.capitalize %> &nbsp;&nbsp;<%= [@bug.solver.usertype] %>
+            Developer Assigned: <%= @bug.solver.username.capitalize %> &nbsp;&nbsp;<%= [@bug.solver.usertype] %><br>
+            Bug Status: <%= @bug.status.capitalize %><br>
+            
             <div class="pull-right"><small>Created: <%= time_ago_in_words(@bug.created_at) %> ago</small></div>
         </p>
     </div>
     <div class = "bug-actions well">        
         <ul class = "well">
-        <li><%= link_to "Return to bugs Listing", bugs_path, class: "button" %></li>
-        <li><%= link_to "Edit this bug", edit_bug_path(@bug), class: "button" %></li>
+        <%if current_user.usertype == 'QA' && current_user.id == @bug.creator_id %>
+            <li><%= link_to "Edit this bug", edit_bug_path(@bug), class: "button" %></li>
         <li><%= button_to "Delete this bug", bug_path(@bug), method: :delete, class: "btn" %></li>
+        <% end %>
+        <%if current_user.usertype == 'Developer' && current_user.id == @bug.solver_id %>
+            <li><%= link_to "Update this bug", edit_bug_path(@bug), class: "button" %></li>
+        <% end %>
+        <li><%= link_to "Return to bugs Listing", bugs_path, class: "button" %></li>
+        
         </ul>
     </div>
 </div>

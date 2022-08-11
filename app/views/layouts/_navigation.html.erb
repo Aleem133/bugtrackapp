@@ -19,12 +19,7 @@
         <% end %>
         <li class="nav-item">
           <%= link_to "All Bugs", bugs_path, class:'button' %>
-        </li>
-        <% if current_user.usertype == "QA" %>          
-          <li class="nav-item">
-            <%= link_to "Create Bug", new_bug_path, class:'button' %>
-          </li>
-        <% end %>  
+        </li>  
         <li class="nav-item">
         <%= button_to " Sign Out  ", destroy_user_session_path, method: :delete, data: {turbo_confirm: "You will be signed out...!"}, class:'button' %>
         </li>
@@ -39,9 +34,6 @@
           <%= link_to " Sign In  ", new_user_session_path, class:'button' %>
         </li>
       <% end %>
-      
-      
     </ul>
-    
   </div>
 </nav>

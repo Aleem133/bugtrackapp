@@ -8,17 +8,24 @@
     <div class="pull-right">
         <p>
             <div class="pull-right">
-            <small>Created By: <em><%= @project.creator.username.capitalize %> [Manager]</em> </small>
-            <small><%= time_ago_in_words(@project.created_at) %> ago</small></div>
+                <% if @project.bugs.any?%>
+                    <p>Bugs: <%= render @project.bugs %></p>
+                <% end %>
+                <small>Created By: <em><%= @project.creator.username.capitalize %> [Manager]</em> </small>
+                <small><%= time_ago_in_words(@project.created_at) %> ago</small>
+            </div>
         </p>
     </div>
     <div class = "project-actions">        
         <ul>
-        <%= link_to "Return to projects Listing", projects_path, class: "button" %><br>
         <%if current_user.usertype == 'Manager'%>
             <%= link_to "Edit this Project", edit_project_path(@project), class: "button" %>
             <%= button_to "Delete this Project", project_path(@project), method: :delete, data: {confirm:"Are you sure you want to delete this project.?"}, class: "btn" %>
         <% end %>
+        <% if current_user.usertype == "QA" %>
+            <%= link_to "Create Bug", new_bug_path(:project_id => params[:id]), class:'button' %><br>
+        <% end %>
+        <%= link_to "Return to projects Listing", projects_path, class: "button" %><br>
         </ul>
     </div>
 </div>
