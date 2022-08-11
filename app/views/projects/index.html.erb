@@ -1,8 +1,6 @@
 <%= render 'shared/page_title', title: "Showing All Projects" %>
 
-<% if user_signed_in? %>
-  <div>Signed in as... <%= current_user.email %></div>
-<% end %>
+
 
 <div align="center">
     <% @projects.each do |project| %>
@@ -10,6 +8,9 @@
             <div class="col-md-12 well">
                 <h4><%= link_to project.title.capitalize, project_path(project) %></h4>
                 <h4><%= project.description %></h4>
+                <% if project.bugs.any?%>
+                    <p>Bugs: <%= render project.bugs %></p>
+                <% end %>
                 <small>Created By: <em><%= project.creator.username.capitalize %> <%= [ project.creator.usertype ] %></em> </small><br>
                 <small>Created <%= time_ago_in_words(project.created_at) %> ago</small><br>
                 <small>Updated <%= time_ago_in_words(project.updated_at) %> ago</small><hr />

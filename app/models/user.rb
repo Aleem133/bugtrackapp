@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :created_bugs, class_name: "Bug", foreign_key: "creator_id"
   has_many :solved_bugs, class_name: "Bug", foreign_key: "solver_id"
 
+  has_many :bugs, through: :created_projects
+
   
   enum usertype: {
     Manager: 0,

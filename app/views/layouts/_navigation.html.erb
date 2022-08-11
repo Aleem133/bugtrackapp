@@ -8,19 +8,19 @@
     <ul class="nav navbar-nav">
       <li>
       <% if user_signed_in?%>
+        
+        <li>
+          <%= link_to "All Projects", projects_path, class:'button' %>
+        </li>
         <% if current_user.usertype == "Manager" %>
-          <li>
-            <%= link_to "All Projects", projects_path, class:'button' %>
-          </li>
           <li class="nav-item active">
             <%= link_to "Create Project", new_project_path, class:'button' %>
           </li>
         <% end %>
-        <% if current_user.usertype == "QA" %>
-          <li class="nav-item">
-            <%= link_to "All Bugs", bugs_path, class:'button' %>
-          </li>
-          
+        <li class="nav-item">
+          <%= link_to "All Bugs", bugs_path, class:'button' %>
+        </li>
+        <% if current_user.usertype == "QA" %>          
           <li class="nav-item">
             <%= link_to "Create Bug", new_bug_path, class:'button' %>
           </li>
