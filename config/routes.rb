@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'pages/home', to: "pages#home"
 
-  resources :projects do
-      resources :bugs
-  end
-  
+  # resources :projects do
+  #     resources :bugs
+  #   end
+  # end
+  resources :projects
   resources :bugs 
   
   # Defines the root path route ("/")

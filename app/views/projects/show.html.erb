@@ -10,6 +10,26 @@
             <div class="pull-right">
                 <% if @project.bugs.any?%>
                     <p>Bugs: <%= render @project.bugs %></p>
+                <% else %>
+                    <p>Bugs:   This project has no bugs yet..!</p>
+                <% end %>
+                <% if @project.users.QA.count != 0%>
+                    <p>QA(s):&nbsp;&nbsp;&nbsp;
+                        <% @project.users.QA.each do |qa|%>
+                            <%= qa.username %>&nbsp; | &nbsp;
+                        <% end %>
+                    </p>
+                <% else %>
+                    <p>Dev:   This project has no QA(s) yet..!</p>
+                <% end %>
+                <% if @project.users.Developer.count != 0%>
+                    <p>Developer(s):&nbsp;&nbsp;&nbsp;
+                        <% @project.users.Developer.each do |dev|%>
+                            <%= dev.username %> &nbsp; | &nbsp;
+                        <% end %>
+                    </p>
+                <% else %>
+                    <p>Dev:   This project has no QA(s) yet..!</p>
                 <% end %>
                 <small>Created By: <em><%= @project.creator.username.capitalize %> [Manager]</em> </small>
                 <small><%= time_ago_in_words(@project.created_at) %> ago</small>

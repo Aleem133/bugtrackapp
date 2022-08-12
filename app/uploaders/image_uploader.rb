@@ -44,10 +44,37 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def extension_allowlist
   #   %w(jpg jpeg gif png)
   # end
+  def content_type_whitelist
+    [/image\//]
+  end
+  def extension_allowlist
+    %w(gif png)
+  end
+
+  def extension_white_list
+    %w(gif png)
+
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  def check_extension_whitelist! new_file
+    extension = new_file.extension.to_s
+    if extension_white_list && !whitelisted_extension?(extension)
+      #flash[:notice] = "Screenshot shoul be in .gif or .png"
+      raise CarrierWave::IntegrityError, I18n.translate(:"errors.messages.extension_white_list_error", extension: extension, allowed_types: Array(extension_white_list).join(", "))
+      
+    end
+  end
+
+  def whitelisted_extension? extension
+    downcase_extension = extension.downcase
+    Array(extension_white_list).any? { |item| downcase_extension =~ /\A#{item}\z/i }
+  end
 end

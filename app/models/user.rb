@@ -9,7 +9,8 @@ class User < ApplicationRecord
   
   
   has_many :user_projects
-  has_many :projects, through: :user_projects
+  #has_many :projects, through: :user_projects
+  has_many :assigned_projects, through: :user_projects, source: :project
   has_many :created_projects, class_name: "Project", foreign_key: :creator_id
 
   has_many :created_bugs, class_name: "Bug", foreign_key: "creator_id"
@@ -18,7 +19,7 @@ class User < ApplicationRecord
   has_many :bugs, through: :created_projects
 
   
-  enum usertype: {
+  enum user_type: {
     Manager: 0,
     Developer: 1,
     QA: 2

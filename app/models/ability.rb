@@ -1,18 +1,20 @@
 class Ability
     include CanCan::Ability
   
-    def initialize(user)
-        
-        if user.Manager?
-            
-            can [:create, :read, :update, :delete], Project, user: user
-            can :read, Bug, user: user
-        elsif user.Developer?
-            can :read, Project, user: user
-            can [:update, :read], Bug, user: user
-        else
-            can :read, Project, user: user
-            can [:create, :read, :update, :delete], Bug, user: user
+    def initialize(current_user)
+        current_user ||= User.new
+        if current_user.Manager?
+            can :create, Project
+            can :read, Project , creator_id: current_user.id
+            can :edit, Project , creator_id: current_user.id
+            can :destroy, Project , user: current_user
+            can :read, Bug
+        elsif current_user.Developer?
+            can :read, Project
+            can [:update, :read], Bug
+        elsif current_user.QA?
+            can :read, Project
+            can [:create, :read, :update, :destroy], Bug
         end
         
     end

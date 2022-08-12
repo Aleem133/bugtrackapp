@@ -3,19 +3,23 @@
 
 
 <div align="center">
-    <% @projects.each do |project| %>
-        <div class="row">
-            <div class="col-md-12 well">
-                <h4><%= link_to project.title.capitalize, project_path(project) %></h4>
-                <h4><%= project.description %></h4>
-                <% if project.bugs.any?%>
-                    <p>Bugs: <%= render project.bugs %></p>
-                <% end %>
-                <small>Created By: <em><%= project.creator.username.capitalize %> <%= [ project.creator.usertype ] %></em> </small><br>
-                <small>Created <%= time_ago_in_words(project.created_at) %> ago</small><br>
-                <small>Updated <%= time_ago_in_words(project.updated_at) %> ago</small><hr />
+    <% if @projects.count != 0 %>
+        <% @projects.each do |project| %>
+            <div class="row">
+                <div class="col-md-12 well">
+                    <h4><%= link_to project.title.capitalize, project_path(project) %></h4>
+                    <h4><%= project.description %></h4>
+                    <% if project.bugs.any?%>
+                        <p>Bugs: <%= render project.bugs %></p>
+                    <% end %>
+                    <small>Created By: <em><%= project.creator.username.capitalize %> <%= [ project.creator.usertype ] %></em> </small><br>
+                    <small>Created <%= time_ago_in_words(project.created_at) %> ago</small><br>
+                    <small>Updated <%= time_ago_in_words(project.updated_at) %> ago</small><hr />
+                </div>
             </div>
-        </div>
+        <% end %>
+        <%= will_paginate %>
+    <% else %>
+        <h5>No Projects yet..!</h5>
     <% end %>
-    <%= will_paginate %>
 </div>

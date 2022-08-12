@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  #before_action :authenticate_user!, if: :project_controller? ,if: :bug_controller?
 
   protected
 
@@ -10,11 +11,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :usertype, :current_password)}
   end
 
-  def require_user
-    if current_user
-        @user = current_user
-    else
-        redirect_to new_user_session_path, notice: 'You are not logged in.'
-    end
-  end
+  # def require_user
+  #   if current_user
+  #       @user = current_user
+  #   else
+  #       redirect_to new_user_session_path, notice: 'You are not logged in.'
+  #   end
+  # end
 end
